@@ -1,2 +1,4 @@
 ﻿  main.cpp
+C:\Users\Brandon\source\repos\Binary Search\Binary Search\main.cpp(95,31): warning C4474: 'scanf_s' : too many arguments passed for format string
+C:\Users\Brandon\source\repos\Binary Search\Binary Search\main.cpp(95,31): message : placeholders and their parameters expect 1 variadic arguments, but 2 were provided
   Binary Search.vcxproj -> C:\Users\Brandon\source\repos\Binary Search\Debug\Binary Search.exe

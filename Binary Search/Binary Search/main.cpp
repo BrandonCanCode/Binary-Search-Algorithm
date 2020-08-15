@@ -35,6 +35,7 @@ int lookup(const struct entry dictionary[], const char search[], const int entri
 
 int main(void) {
 	
+	// The Information
 	// The small wacky dictionary
 	const struct entry dictionary[100] =
 	{   {	"bumfuzzle",	"to confuse or fluster"	},
@@ -48,23 +49,51 @@ int main(void) {
 		{	"snollygoster",	"clever, inscrupulous person"	},
 		{	"widdershins",	"to go counterclockwise or in a oppopsite of usual direction"	} };
 
+	// Decleration of Variables
 
+	int again = 1;
 	int entries = 10;
 	char word[15];
 	int word_entry;
+
+	// Menu
+	// Intro
+	printf("\n+ - - - - - - Welcome to the binary search! - - - - - - +");
+	printf("\n+ - - - - Type a word to find its definition  - - - - - +");
+	printf("\n| Searchable words:\t\t\t\t\t|");
+	printf("\n|\t\t\t\t\t\t\t|");
+	
+    // Loops to display avaliable words 
+	for (int i = 0; i < entries; i++) {
+		printf("\n| %-53s |", dictionary[i].word);
+	}
+	printf("\n|\t\t\t\t\t\t\t|");
+	printf("\n+ - - - - - - - - - - - - - - - - - - - - - - - - - - - +");
+
+
+
 	int lookup(const struct entry dictionary[], const char search[], const int entries);
 
-	//Input
-	printf("Enter a wacky word: ");
-	gets_s(word);
-	
-	word_entry = lookup(dictionary, word, entries);
+	//Loop
+	while (again == 1) {
 
-	//Output
-	if (word_entry != -1)
-		printf("\n%s\n", dictionary[word_entry].definition);
-	else
-		printf("\nSorry, %s is not in my wacky dicitonary. %d\n", word, word_entry);
+		//Input
+		printf("\n\nEnter a wacky word: ");
+		//gets_s(word);
+		scanf_s("%15s", word, (unsigned)sizeof(word));
+
+		word_entry = lookup(dictionary, word, entries);
+
+		//Output
+		if (word_entry != -1)
+			printf("\n\n--> %s", dictionary[word_entry].definition);
+		else
+			printf("\n\nSorry, %s is not in my wacky dicitonary.", word);
+
+		//Again question
+		printf("\n\nWant to go again? (1 for yes or anything else for no): ");
+		scanf_s("%d", &again, sizeof(int));
+	}
 	
 	return 0;
 }
