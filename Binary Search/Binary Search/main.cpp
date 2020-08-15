@@ -50,11 +50,14 @@ int main(void) {
 		{	"widdershins",	"to go counterclockwise or in a oppopsite of usual direction"	} };
 
 	// Decleration of Variables
-
-	int again = 1;
 	int entries = 10;
 	char word[15];
 	int word_entry;
+
+
+	// Prototyping
+	int lookup(const struct entry dictionary[], const char search[], const int entries);
+
 
 	// Menu
 	// Intro
@@ -62,6 +65,7 @@ int main(void) {
 	printf("\n+ - - - - Type a word to find its definition  - - - - - +");
 	printf("\n| Searchable words:\t\t\t\t\t|");
 	printf("\n|\t\t\t\t\t\t\t|");
+
 	
     // Loops to display avaliable words 
 	for (int i = 0; i < entries; i++) {
@@ -71,28 +75,25 @@ int main(void) {
 	printf("\n+ - - - - - - - - - - - - - - - - - - - - - - - - - - - +");
 
 
-
-	int lookup(const struct entry dictionary[], const char search[], const int entries);
-
 	//Loop
-	while (again == 1) {
+	while (strcmp(word,"exit")) {
 
 		//Input
-		printf("\n\nEnter a wacky word: ");
-		//gets_s(word);
+		printf("\n\n\nEnter a wacky word or type \"exit\" to quit: ");
 		scanf_s("%15s", word, (unsigned)sizeof(word));
 
 		word_entry = lookup(dictionary, word, entries);
 
 		//Output
 		if (word_entry != -1)
-			printf("\n\n--> %s", dictionary[word_entry].definition);
-		else
-			printf("\n\nSorry, %s is not in my wacky dicitonary.", word);
+			printf("\n--> %s", dictionary[word_entry].definition);
 
-		//Again question
-		printf("\n\nWant to go again? (1 for yes or anything else for no): ");
-		scanf_s("%d", &again, sizeof(int));
+		// Takes account of exit instead of it not being in the dictionary
+		else if (!strcmp(word, "exit"))
+			printf("\n");
+		else
+			printf("\nSorry, %s is not in my wacky dicitonary.", word);
+
 	}
 	
 	return 0;
